@@ -3,7 +3,7 @@
 
 pkgname=nvidia-utils
 pkgver=256.44
-pkgrel=1
+pkgrel=2
 pkgdesc="NVIDIA drivers utilities and libraries."
 arch=('i686' 'x86_64')
 url="http://www.nvidia.com/"
@@ -29,7 +29,7 @@ elif [ "$CARCH" = "x86_64" ]; then
 fi
 
 source[1]='20-nvidia.conf'
-md5sums[1]='37e417b2c69e46de1346a653e07027fa'
+md5sums[1]='89bf9ae79a38e6070d2ae97efdadeed7'
 
 build() {
 	cd $srcdir
@@ -58,9 +58,8 @@ package() {
 	install -D -m644 cuda.h $pkgdir/usr/include/cuda/cuda.h
 	install -D -m644 cudaGL.h $pkgdir/usr/include/cuda/cudaGL.h
 	install -D -m644 cudaVDPAU.h $pkgdir/usr/include/cuda/cudaVDPAU.h
-	# nvidia-tls libraries
-	install -D -m755 libnvidia-tls.so.$pkgver $pkgdir/usr/lib/libnvidia-tls.so.$pkgver
-	install -D -m755 tls/libnvidia-tls.so.$pkgver $pkgdir/usr/lib/tls/libnvidia-tls.so.$pkgver
+	# nvidia-tls library
+	install -D -m755 tls/libnvidia-tls.so.$pkgver $pkgdir/usr/lib/libnvidia-tls.so.$pkgver
 	# OpenCL
 	install -D -m755 libnvidia-compiler.so.$pkgver $pkgdir/usr/lib/libnvidia-compiler.so.$pkgver
 	install -D -m755 libOpenCL.so.1.0.0 $pkgdir/usr/lib/libOpenCL.so.1.0.0
