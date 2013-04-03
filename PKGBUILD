@@ -3,7 +3,7 @@
 pkgbase=nvidia-utils
 pkgname=('nvidia-utils' 'nvidia-libgl' 'opencl-nvidia')
 pkgver=313.26
-pkgrel=2
+pkgrel=3
 arch=('i686' 'x86_64')
 url="http://www.nvidia.com/"
 license=('custom')
@@ -51,6 +51,7 @@ package_opencl-nvidia() {
 
 package_nvidia-libgl() {
     pkgdesc="NVIDIA drivers libraries symlinks"
+    depends=('nvidia-utils')
     conflicts=('libgl')
     provides=('libgl')
     cd "${srcdir}/${_pkg}"
@@ -67,7 +68,7 @@ package_nvidia-libgl() {
 
 package_nvidia-utils() {
     pkgdesc="NVIDIA drivers utilities"
-    depends=('xorg-server' 'nvidia-libgl')
+    depends=('xorg-server')
     optdepends=('gtk2: nvidia-settings'
                 'opencl-nvidia: OpenCL support')
     cd "${srcdir}/${_pkg}"
