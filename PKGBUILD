@@ -90,8 +90,9 @@ package_nvidia-dkms() {
 
 package_nvidia-utils() {
     pkgdesc="NVIDIA drivers utilities"
-    depends=('xorg-server' 'libglvnd' 'egl-wayland')
+    depends=('libglvnd' 'egl-wayland')
     optdepends=('nvidia-settings: configuration tool'
+                'xorg-server: Xorg support'
                 'xorg-server-devel: nvidia-xconfig'
                 'opencl-nvidia: OpenCL support')
     conflicts=('nvidia-libgl')
