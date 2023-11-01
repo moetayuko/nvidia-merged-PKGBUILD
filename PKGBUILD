@@ -4,8 +4,8 @@
 
 pkgbase=nvidia-utils
 pkgname=('nvidia-utils' 'opencl-nvidia' 'nvidia-dkms')
-pkgver=535.113.01
-pkgrel=2
+pkgver=545.29.02
+pkgrel=1
 arch=('x86_64')
 url="http://www.nvidia.com/"
 license=('custom')
@@ -19,7 +19,7 @@ source=('nvidia-drm-outputclass.conf'
 sha512sums=('de7116c09f282a27920a1382df84aa86f559e537664bb30689605177ce37dc5067748acf9afd66a3269a6e323461356592fdfc624c86523bf105ff8fe47d3770'
             '4b3ad73f5076ba90fe0b3a2e712ac9cde76f469cd8070280f960c3ce7dc502d1927f525ae18d008075c8f08ea432f7be0a6c3a7a6b49c361126dcf42f97ec499'
             'a0ceb0a6c240cf97b21a2e46c5c212250d3ee24fecef16aca3dffb04b8350c445b9f4398274abccdb745dd0ba5132a17942c9508ce165d4f97f41ece02b0b989'
-            'bf939843404bc163246b710ca336236f28af489f77ee1830a2d20d4ca926a434b6fbc2156d5777dc004692d5d1adbef77ce79071247f81da2db9adf42c32bfa7')
+            'b3d31d19f2912e4926446b609c07f181fae00b1dc4b025ddb52f8c28a1f14904d29ff6514fd04c734776bec82a351476009d60be9293968fbea7dc62ed580de8')
 
 
 create_links() {
@@ -144,9 +144,6 @@ package_nvidia-utils() {
     install -Dm755 "libnvidia-ml.so.${pkgver}" "${pkgdir}/usr/lib/libnvidia-ml.so.${pkgver}"
     install -Dm755 "libnvidia-glvkspirv.so.${pkgver}" "${pkgdir}/usr/lib/libnvidia-glvkspirv.so.${pkgver}"
     install -Dm755 "libnvidia-allocator.so.${pkgver}" "${pkgdir}/usr/lib/libnvidia-allocator.so.${pkgver}"
-    install -Dm755 "libnvidia-vulkan-producer.so.${pkgver}" "${pkgdir}/usr/lib/libnvidia-vulkan-producer.so.${pkgver}"
-    # Sigh libnvidia-vulkan-producer.so has no SONAME set so create_links doesn't catch it. NVIDIA please fix!
-    patchelf --set-soname "libnvidia-vulkan-producer.so.1" "${pkgdir}/usr/lib/libnvidia-vulkan-producer.so.${pkgver}"
 
     # Vulkan ICD
     install -Dm644 "nvidia_icd.json" "${pkgdir}/usr/share/vulkan/icd.d/nvidia_icd.json"
