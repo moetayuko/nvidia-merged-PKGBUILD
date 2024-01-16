@@ -1,6 +1,7 @@
 # Maintainer: Sven-Hendrik Haase <svenstaro@archlinux.org>
 # Maintainer: Thomas Baechler <thomas@archlinux.org>
 # Contributor: James Rayner <iphitus@gmail.com>
+# Contributor: Vasiliy Stelmachenok <ventureo@yandex.ru>
 
 pkgbase=nvidia-utils
 pkgname=('nvidia-utils' 'opencl-nvidia' 'nvidia-dkms')
@@ -18,7 +19,7 @@ source=('nvidia-drm-outputclass.conf'
         "https://us.download.nvidia.com/XFree86/Linux-x86_64/${pkgver}/${_pkg}.run")
 sha512sums=('de7116c09f282a27920a1382df84aa86f559e537664bb30689605177ce37dc5067748acf9afd66a3269a6e323461356592fdfc624c86523bf105ff8fe47d3770'
             '4b3ad73f5076ba90fe0b3a2e712ac9cde76f469cd8070280f960c3ce7dc502d1927f525ae18d008075c8f08ea432f7be0a6c3a7a6b49c361126dcf42f97ec499'
-            'a0ceb0a6c240cf97b21a2e46c5c212250d3ee24fecef16aca3dffb04b8350c445b9f4398274abccdb745dd0ba5132a17942c9508ce165d4f97f41ece02b0b989'
+            '63377741f668beea0dab08dbe5c0be2a7b9393a2893358b23a93efb3422d7b733c421e3abd08c6b9c0158aa0c5649d2bf9f4eca500404bd7fc14400c7fbbcd99'
             'b80e1643471c48477479a48d2e8a9c4a241874d6207ddeaccdeedd3f9f1121d79be90be07d37df094fa6f7cc5806857bf2368337ba40cb5cfe6d04c117c5c45d')
 
 
