@@ -6,7 +6,7 @@
 pkgbase=nvidia-utils
 pkgname=('nvidia-utils' 'opencl-nvidia' 'nvidia-dkms')
 pkgver=545.29.06
-pkgrel=2
+pkgrel=3
 arch=('x86_64')
 url="http://www.nvidia.com/"
 license=('custom')
@@ -16,10 +16,12 @@ _pkg="NVIDIA-Linux-x86_64-${pkgver}"
 source=('nvidia-drm-outputclass.conf'
         'nvidia-utils.sysusers'
         'nvidia.rules'
+        'nvidia-drivers-470.223.02-gpl-pfn_valid.patch'
         "https://us.download.nvidia.com/XFree86/Linux-x86_64/${pkgver}/${_pkg}.run")
 sha512sums=('de7116c09f282a27920a1382df84aa86f559e537664bb30689605177ce37dc5067748acf9afd66a3269a6e323461356592fdfc624c86523bf105ff8fe47d3770'
             '4b3ad73f5076ba90fe0b3a2e712ac9cde76f469cd8070280f960c3ce7dc502d1927f525ae18d008075c8f08ea432f7be0a6c3a7a6b49c361126dcf42f97ec499'
             '63377741f668beea0dab08dbe5c0be2a7b9393a2893358b23a93efb3422d7b733c421e3abd08c6b9c0158aa0c5649d2bf9f4eca500404bd7fc14400c7fbbcd99'
+            '6951e2382c4089bab738b9cd258cd2646fc2754cceeca9dc760414355e5f9fa74d8ed2b4f1c43b7d5b1ad16c3d4e7d88fecd79b5c15f4cc8963ae54aaa009a94'
             'b80e1643471c48477479a48d2e8a9c4a241874d6207ddeaccdeedd3f9f1121d79be90be07d37df094fa6f7cc5806857bf2368337ba40cb5cfe6d04c117c5c45d')
 
 
@@ -39,6 +41,10 @@ prepare() {
     bsdtar -xf nvidia-persistenced-init.tar.bz2
 
     cd kernel
+
+    # Fix incompat with Linux 6.6.15 and 6.7.3
+    # From Gentoo at https://github.com/gentoo/gentoo/commit/c64caf5352e8b82edbaa2204aaf055cbcabfc8d1
+    patch --no-backup-if-mismatch -Np2 -i "$srcdir/nvidia-drivers-470.223.02-gpl-pfn_valid.patch"
 
     sed -i "s/__VERSION_STRING/${pkgver}/" dkms.conf
     sed -i 's/__JOBS/`nproc`/' dkms.conf
