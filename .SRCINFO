@@ -1,6 +1,6 @@
 pkgbase = nvidia-utils
 	pkgver = 550.76
-	pkgrel = 1
+	pkgrel = 2
 	url = http://www.nvidia.com/
 	arch = x86_64
 	license = custom
@@ -12,7 +12,7 @@ pkgbase = nvidia-utils
 	source = https://us.download.nvidia.com/XFree86/Linux-x86_64/550.76/NVIDIA-Linux-x86_64-550.76.run
 	sha512sums = de7116c09f282a27920a1382df84aa86f559e537664bb30689605177ce37dc5067748acf9afd66a3269a6e323461356592fdfc624c86523bf105ff8fe47d3770
 	sha512sums = 4b3ad73f5076ba90fe0b3a2e712ac9cde76f469cd8070280f960c3ce7dc502d1927f525ae18d008075c8f08ea432f7be0a6c3a7a6b49c361126dcf42f97ec499
-	sha512sums = d0f98ac887b170e2f8bdc450bc1b78cbbcb637ff0db6a8afb63cafdf4306d40b6c03d2bf80394036620be2a3e5b5fc2c1be16919d0aa84217f0b722c505f40da
+	sha512sums = 7abcd836f19e3695f4245165ca87c26f82b7c59e039e4324fad05878f6bf9964038560620cf860a2973268325897266efffbe737715c7ad94db9aad4e5421837
 	sha512sums = a3804501b220d4acbda9633b92c4515bb14d0b5233f3ffd5e173290d310efdb1ed9a9602f727c117c1d0746d596c1125c51cc3e1fde65c79905e60e1d35f50ec
 
 pkgname = nvidia-utils
