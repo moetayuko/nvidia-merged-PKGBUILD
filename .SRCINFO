@@ -1,6 +1,6 @@
 pkgbase = nvidia-utils
-	pkgver = 550.76
-	pkgrel = 3
+	pkgver = 550.78
+	pkgrel = 1
 	url = http://www.nvidia.com/
 	arch = x86_64
 	license = custom
@@ -9,11 +9,11 @@ pkgbase = nvidia-utils
 	source = nvidia-drm-outputclass.conf
 	source = nvidia-utils.sysusers
 	source = nvidia.rules
-	source = https://us.download.nvidia.com/XFree86/Linux-x86_64/550.76/NVIDIA-Linux-x86_64-550.76.run
+	source = https://us.download.nvidia.com/XFree86/Linux-x86_64/550.78/NVIDIA-Linux-x86_64-550.78.run
 	sha512sums = de7116c09f282a27920a1382df84aa86f559e537664bb30689605177ce37dc5067748acf9afd66a3269a6e323461356592fdfc624c86523bf105ff8fe47d3770
 	sha512sums = 4b3ad73f5076ba90fe0b3a2e712ac9cde76f469cd8070280f960c3ce7dc502d1927f525ae18d008075c8f08ea432f7be0a6c3a7a6b49c361126dcf42f97ec499
 	sha512sums = 42d00548b72f29d9bedf958cae63d336568267094dc5bcee97fae32fbf1d05b210038f4b9332deff23368e0c9d27cd6e43054e59d1edea7d82b77bbcb263815c
-	sha512sums = a3804501b220d4acbda9633b92c4515bb14d0b5233f3ffd5e173290d310efdb1ed9a9602f727c117c1d0746d596c1125c51cc3e1fde65c79905e60e1d35f50ec
+	sha512sums = 02c69e2699cd20c99bf147139920ce4708c0e4224b7234c499481996e45a879f29ebe1e5eb0e94f756bf8290d2a019050dd92add9ad375ea3bd5e21704823249
 
 pkgname = nvidia-utils
 	pkgdesc = NVIDIA drivers utilities
@@ -39,7 +39,7 @@ pkgname = opencl-nvidia
 pkgname = nvidia-dkms
 	pkgdesc = NVIDIA drivers - module sources
 	depends = dkms
-	depends = nvidia-utils=550.76
+	depends = nvidia-utils=550.78
 	depends = libglvnd
 	provides = NVIDIA-MODULE
 	provides = nvidia
