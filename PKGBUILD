@@ -1,8 +1,8 @@
 # Maintainer: archeese
 
 _pkgmainbranch=nvidia-utils
-pkgbase=nvidia-535xx-utils
-pkgname=('nvidia-535xx-utils' 'opencl-nvidia-535xx' 'nvidia-535xx-dkms')
+pkgbase=nvidia-merged-535xx-utils
+pkgname=('nvidia-merged-535xx-utils' 'opencl-nvidia-merged-535xx' 'nvidia-merged-535xx-dkms')
 pkgver=535.161.07
 pkgrel=1
 pkgdesc="NVIDIA drivers for Linux, 535 branch, dkms"
@@ -57,7 +57,7 @@ DEST_MODULE_LOCATION[4]="/kernel/drivers/video"' dkms.conf
     sed -i 's/NV_EXCLUDE_BUILD_MODULES/IGNORE_PREEMPT_RT_PRESENCE=1 NV_EXCLUDE_BUILD_MODULES/' dkms.conf
 }
 
-package_opencl-nvidia-535xx() {
+package_opencl-nvidia-merged-535xx() {
     pkgdesc="OpenCL implemention for NVIDIA, 535 branch"
     depends=('zlib')
     optdepends=('opencl-headers: headers necessary for OpenCL development')
@@ -75,7 +75,7 @@ package_opencl-nvidia-535xx() {
     ln -s nvidia-utils "${pkgdir}/usr/share/licenses/opencl-nvidia"
 }
 
-package_nvidia-535xx-dkms() {
+package_nvidia-merged-535xx-dkms() {
     _pkgmainbranch=nvidia-dkms
     pkgdesc="NVIDIA drivers - module sources, 535 branch"
     depends=('dkms' "nvidia-utils=${pkgver}" 'libglvnd')
@@ -91,7 +91,7 @@ package_nvidia-535xx-dkms() {
     ln -s "${pkgname}" "${pkgdir}/usr/share/licenses/${_pkgmainbranch}"
 }
 
-package_nvidia-535xx-utils() {
+package_nvidia-merged-535xx-utils() {
     pkgdesc="NVIDIA drivers utilities, 535 branch"
     depends=('libglvnd' 'egl-wayland')
     optdepends=('nvidia-settings: configuration tool'

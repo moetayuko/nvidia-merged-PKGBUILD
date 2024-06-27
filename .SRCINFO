@@ -1,4 +1,4 @@
-pkgbase = nvidia-535xx-utils
+pkgbase = nvidia-merged-535xx-utils
 	pkgdesc = NVIDIA drivers for Linux, 535 branch, dkms
 	pkgver = 535.161.07
 	pkgrel = 1
@@ -16,9 +16,9 @@ pkgbase = nvidia-535xx-utils
 	sha512sums = a0ceb0a6c240cf97b21a2e46c5c212250d3ee24fecef16aca3dffb04b8350c445b9f4398274abccdb745dd0ba5132a17942c9508ce165d4f97f41ece02b0b989
 	sha512sums = 4e8dd709157c15519f01a8d419daa098da64666d20a80edf3894239707ff1e83b48553f3edc5d567109d36e52b31ac7c0c7218ea77862a04e89aa3cc1f16a5ba
 
-pkgname = nvidia-535xx-utils
+pkgname = nvidia-merged-535xx-utils
 	pkgdesc = NVIDIA drivers utilities, 535 branch
-	install = nvidia-535xx-utils.install
+	install = nvidia-merged-535xx-utils.install
 	depends = libglvnd
 	depends = egl-wayland
 	optdepends = nvidia-settings: configuration tool
@@ -32,7 +32,7 @@ pkgname = nvidia-535xx-utils
 	conflicts = nvidia-utils
 	conflicts = nvidia-libgl
 
-pkgname = opencl-nvidia-535xx
+pkgname = opencl-nvidia-merged-535xx
 	pkgdesc = OpenCL implemention for NVIDIA, 535 branch
 	depends = zlib
 	optdepends = opencl-headers: headers necessary for OpenCL development
@@ -40,7 +40,7 @@ pkgname = opencl-nvidia-535xx
 	provides = opencl-driver
 	conflicts = opencl-nvidia
 
-pkgname = nvidia-535xx-dkms
+pkgname = nvidia-merged-535xx-dkms
 	pkgdesc = NVIDIA drivers - module sources, 535 branch
 	depends = dkms
 	depends = nvidia-utils=535.161.07
