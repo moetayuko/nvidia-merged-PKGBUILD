@@ -3,8 +3,8 @@
 # Contributor: James Rayner <iphitus@gmail.com>
 # Contributor: Vasiliy Stelmachenok <ventureo@yandex.ru>
 
-pkgbase=nvidia-utils
-pkgname=('nvidia-utils' 'opencl-nvidia' 'nvidia-dkms')
+pkgbase=nvidia-merged-utils
+pkgname=('nvidia-merged-utils' 'opencl-nvidia-merged' 'nvidia-merged-dkms')
 pkgver=550.90.07
 pkgrel=4
 arch=('x86_64')
@@ -62,11 +62,12 @@ DEST_MODULE_LOCATION[4]="/kernel/drivers/video"' dkms.conf
     sed -i 's/NV_EXCLUDE_BUILD_MODULES/IGNORE_PREEMPT_RT_PRESENCE=1 NV_EXCLUDE_BUILD_MODULES/' dkms.conf
 }
 
-package_opencl-nvidia() {
+package_opencl-nvidia-merged() {
     pkgdesc="OpenCL implemention for NVIDIA"
     depends=('zlib')
     optdepends=('opencl-headers: headers necessary for OpenCL development')
-    provides=('opencl-driver')
+    conflicts=('opencl-nvidia')
+    provides=('opencl-nvidia' 'opencl-driver')
     cd "${_pkg}"
 
     # OpenCL
@@ -79,11 +80,11 @@ package_opencl-nvidia() {
     ln -s nvidia-utils "${pkgdir}/usr/share/licenses/opencl-nvidia"
 }
 
-package_nvidia-dkms() {
+package_nvidia-merged-dkms() {
     pkgdesc="NVIDIA drivers - module sources"
     depends=('dkms' "nvidia-utils=$pkgver" 'libglvnd')
-    provides=('NVIDIA-MODULE' 'nvidia')
-    conflicts=('NVIDIA-MODULE' 'nvidia')
+    provides=("nvidia-dkms=${pkgver}" 'NVIDIA-MODULE' 'nvidia')
+    conflicts=('nvidia-dkms' 'NVIDIA-MODULE' 'nvidia')
 
     cd ${_pkg}
 
@@ -93,15 +94,15 @@ package_nvidia-dkms() {
     install -Dt "${pkgdir}/usr/share/licenses/${pkgname}" -m644 "${srcdir}/${_pkg}/LICENSE"
 }
 
-package_nvidia-utils() {
+package_nvidia-merged-utils() {
     pkgdesc="NVIDIA drivers utilities"
     depends=('libglvnd' 'egl-wayland')
     optdepends=('nvidia-settings: configuration tool'
                 'xorg-server: Xorg support'
                 'xorg-server-devel: nvidia-xconfig'
                 'opencl-nvidia: OpenCL support')
-    conflicts=('nvidia-libgl')
-    provides=('vulkan-driver' 'opengl-driver' 'nvidia-libgl')
+    conflicts=('nvidia-utils' 'nvidia-libgl')
+    provides=("nvidia-utils=${pkgver}" 'vulkan-driver' 'opengl-driver' 'nvidia-libgl')
     replaces=('nvidia-libgl')
     install="${pkgname}.install"
 

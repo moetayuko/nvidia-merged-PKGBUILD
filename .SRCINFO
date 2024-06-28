@@ -1,4 +1,4 @@
-pkgbase = nvidia-utils
+pkgbase = nvidia-merged-utils
 	pkgver = 550.90.07
 	pkgrel = 4
 	url = http://www.nvidia.com/
@@ -19,33 +19,39 @@ pkgbase = nvidia-utils
 	sha512sums = 55def6319f6abb1a4ccd28a89cd60f1933d155c10ba775b8dfa60a2dc5696b4b472c14b252dc0891f956e70264be87c3d5d4271e929a4fc4b1a68a6902814cee
 	sha512sums = b8c2cdc918ec74b44517fc181f9eb08ea44d0d9a53f221c0aa243e34872203721a9a7fb27628d35e3028a6aa68917abd2962cc13d5d4b09e92866e14678567a4
 
-pkgname = nvidia-utils
+pkgname = nvidia-merged-utils
 	pkgdesc = NVIDIA drivers utilities
-	install = nvidia-utils.install
+	install = nvidia-merged-utils.install
 	depends = libglvnd
 	depends = egl-wayland
 	optdepends = nvidia-settings: configuration tool
 	optdepends = xorg-server: Xorg support
 	optdepends = xorg-server-devel: nvidia-xconfig
 	optdepends = opencl-nvidia: OpenCL support
+	provides = nvidia-utils=550.90.07
 	provides = vulkan-driver
 	provides = opengl-driver
 	provides = nvidia-libgl
+	conflicts = nvidia-utils
 	conflicts = nvidia-libgl
 	replaces = nvidia-libgl
 
-pkgname = opencl-nvidia
+pkgname = opencl-nvidia-merged
 	pkgdesc = OpenCL implemention for NVIDIA
 	depends = zlib
 	optdepends = opencl-headers: headers necessary for OpenCL development
+	provides = opencl-nvidia
 	provides = opencl-driver
+	conflicts = opencl-nvidia
 
-pkgname = nvidia-dkms
+pkgname = nvidia-merged-dkms
 	pkgdesc = NVIDIA drivers - module sources
 	depends = dkms
 	depends = nvidia-utils=550.90.07
 	depends = libglvnd
+	provides = nvidia-dkms=550.90.07
 	provides = NVIDIA-MODULE
 	provides = nvidia
+	conflicts = nvidia-dkms
 	conflicts = NVIDIA-MODULE
 	conflicts = nvidia
