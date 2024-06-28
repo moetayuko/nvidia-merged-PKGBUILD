@@ -69,7 +69,7 @@ prepare() {
     git config submodule.unlock.url "$srcdir/vgpu_unlock"
     git -c protocol.file.allow=always submodule update
 
-    ./patch.sh general-merge
+    ./patch.sh --remap-p2v general-merge
     cd "${_mergeddriver}"
     sed -i '/^Type=forking/a Environment=LD_PRELOAD=/usr/lib/nvidia/libvgpu_unlock_rs.so' init-scripts/systemd/nvidia-vgpu{d,-mgr}.service
     bsdtar -xf nvidia-persistenced-init.tar.bz2
