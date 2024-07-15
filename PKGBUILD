@@ -13,7 +13,7 @@ arch=('x86_64')
 url="http://www.nvidia.com/"
 license=('custom')
 options=('!strip')
-makedepends=('patchelf' 'git' 'rust')
+makedepends=('patchelf' 'git')
 _pkg="NVIDIA-Linux-x86_64-${pkgver}"
 _driverpack="NVIDIA-GRID-Linux-KVM-${_hostver}-${_gridver}-552.55"
 _vgpukvmdriver="NVIDIA-Linux-x86_64-${_hostver}-vgpu-kvm"
@@ -29,8 +29,7 @@ source=('nvidia-drm-outputclass.conf'
         'nvidia-grid.conf'
         "https://foxi.buduanwang.vip/pan/vGPU/${_gridversion}/${_driverpack}.zip"
         "git+https://github.com/VGPU-Community-Drivers/vGPU-Unlock-patcher.git#branch=${pkgver%.*}"
-        'git+https://github.com/DualCoder/vgpu_unlock.git'
-        'git+https://github.com/mbilker/vgpu_unlock-rs.git')
+        'git+https://github.com/DualCoder/vgpu_unlock.git')
 sha512sums=('de7116c09f282a27920a1382df84aa86f559e537664bb30689605177ce37dc5067748acf9afd66a3269a6e323461356592fdfc624c86523bf105ff8fe47d3770'
             '4b3ad73f5076ba90fe0b3a2e712ac9cde76f469cd8070280f960c3ce7dc502d1927f525ae18d008075c8f08ea432f7be0a6c3a7a6b49c361126dcf42f97ec499'
             'f8f071f5a46c1a5ce5188e104b017808d752e61c0c20de1466feb5d693c0b55a5586314411e78cc2ab9c0e16e2c67afdd358da94c0c75df1f8233f54c280762c'
@@ -39,7 +38,6 @@ sha512sums=('de7116c09f282a27920a1382df84aa86f559e537664bb30689605177ce37dc50677
             'b8c2cdc918ec74b44517fc181f9eb08ea44d0d9a53f221c0aa243e34872203721a9a7fb27628d35e3028a6aa68917abd2962cc13d5d4b09e92866e14678567a4'
             '5e1a6b9243d825e6e6fbe152f557a398b17f7b774e485599b0de1570d26147df9cf8226898aa0341e5b23d7fdbc9bae495ddfe775ce56e87966438b6ae069351'
             'd371e5b581f2d49c799275690c4d6e0ea759e06381539edf6fc05b9f43714b9f429f5b4162412950ab0152b3486645525fe19d27217edecc3ac23def9e33d904'
-            'SKIP'
             'SKIP'
             'SKIP')
 
@@ -59,11 +57,6 @@ prepare() {
     mv Guest_Drivers/${_griddriver}.run vGPU-Unlock-patcher/
     mv Host_Drivers/${_vgpukvmdriver}.run vGPU-Unlock-patcher/
 
-    pushd vgpu_unlock-rs
-    export RUSTUP_TOOLCHAIN=stable
-    cargo fetch --target "$(rustc -vV | sed -n 's/host: //p')"
-    popd
-
     cd vGPU-Unlock-patcher
     git submodule init
     git config submodule.unlock.url "$srcdir/vgpu_unlock"
@@ -71,7 +64,6 @@ prepare() {
 
     ./patch.sh --remap-p2v general-merge
     cd "${_mergeddriver}"
-    sed -i '/^Type=forking/a Environment=LD_PRELOAD=/usr/lib/nvidia/libvgpu_unlock_rs.so' init-scripts/systemd/nvidia-vgpu{d,-mgr}.service
     bsdtar -xf nvidia-persistenced-init.tar.bz2
 
     cd kernel
@@ -94,13 +86,6 @@ DEST_MODULE_LOCATION[5]="/kernel/drivers/video"' dkms.conf
 
     # Gift for linux-rt guys
     sed -i 's/NV_EXCLUDE_BUILD_MODULES/IGNORE_PREEMPT_RT_PRESENCE=1 NV_EXCLUDE_BUILD_MODULES/' dkms.conf
-}
-
-build() {
-    cd vgpu_unlock-rs
-    export RUSTUP_TOOLCHAIN=stable
-    export CARGO_TARGET_DIR=target
-    cargo build --frozen --release --no-default-features
 }
 
 package_opencl-nvidia-merged() {
@@ -296,7 +281,6 @@ package_nvidia-merged-utils() {
     install -Dm755 "sriov-manage" "${pkgdir}/usr/lib/nvidia/sriov-manage"
     install -Dm644 "vgpuConfig.xml" "${pkgdir}/usr/share/nvidia/vgpu/vgpuConfig.xml"
     install -Dm644 init-scripts/systemd/*.service -t "${pkgdir}/usr/lib/systemd/system"
-    install -Dm755 "${srcdir}/vgpu_unlock-rs/target/release/libvgpu_unlock_rs.so" "${pkgdir}/usr/lib/nvidia/libvgpu_unlock_rs.so"
     install -Dm644 "$srcdir/nvidia-grid.conf" "${pkgdir}/usr/share/dbus-1/system.d/nvidia-grid.conf"
 
     # distro specific files must be installed in /usr/share/X11/xorg.conf.d
