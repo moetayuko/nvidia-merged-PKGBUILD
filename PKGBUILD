@@ -17,7 +17,6 @@ makedepends=('patchelf' 'git')
 _pkg="NVIDIA-Linux-x86_64-${pkgver}"
 _driverpack="NVIDIA-GRID-Linux-KVM-${_hostver}-${_gridver}-552.55"
 _vgpukvmdriver="NVIDIA-Linux-x86_64-${_hostver}-vgpu-kvm"
-_griddriver="NVIDIA-Linux-x86_64-${_gridver}-grid"
 _gridversion=17.2
 _mergeddriver="NVIDIA-Linux-x86_64-$pkgver-merged-vgpu-kvm-patched"
 source=('nvidia-drm-outputclass.conf'
@@ -54,7 +53,6 @@ create_links() {
 
 prepare() {
     mv ${_pkg}.run vGPU-Unlock-patcher/
-    mv Guest_Drivers/${_griddriver}.run vGPU-Unlock-patcher/
     mv Host_Drivers/${_vgpukvmdriver}.run vGPU-Unlock-patcher/
 
     cd vGPU-Unlock-patcher
