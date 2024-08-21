@@ -8,16 +8,16 @@ pkgname=('nvidia-merged-utils' 'opencl-nvidia-merged' 'nvidia-merged-dkms')
 pkgver=550.90.07
 _hostver=550.90.05
 _gridver=550.90.07
-pkgrel=4
+pkgrel=5
 arch=('x86_64')
 url="http://www.nvidia.com/"
 license=('custom')
 options=('!strip')
 makedepends=('patchelf' 'git')
 _pkg="NVIDIA-Linux-x86_64-${pkgver}"
-_driverpack="NVIDIA-GRID-Linux-KVM-${_hostver}-${_gridver}-552.55"
+_driverpack="NVIDIA-GRID-Linux-KVM-${_hostver}-${_gridver}-552.74"
 _vgpukvmdriver="NVIDIA-Linux-x86_64-${_hostver}-vgpu-kvm"
-_gridversion=17.2
+_gridversion=17.3
 _mergeddriver="NVIDIA-Linux-x86_64-$pkgver-merged-vgpu-kvm-patched"
 source=('nvidia-drm-outputclass.conf'
         'nvidia-utils.sysusers'
@@ -36,7 +36,7 @@ sha512sums=('de7116c09f282a27920a1382df84aa86f559e537664bb30689605177ce37dc50677
             '55def6319f6abb1a4ccd28a89cd60f1933d155c10ba775b8dfa60a2dc5696b4b472c14b252dc0891f956e70264be87c3d5d4271e929a4fc4b1a68a6902814cee'
             'b8c2cdc918ec74b44517fc181f9eb08ea44d0d9a53f221c0aa243e34872203721a9a7fb27628d35e3028a6aa68917abd2962cc13d5d4b09e92866e14678567a4'
             '5e1a6b9243d825e6e6fbe152f557a398b17f7b774e485599b0de1570d26147df9cf8226898aa0341e5b23d7fdbc9bae495ddfe775ce56e87966438b6ae069351'
-            'd371e5b581f2d49c799275690c4d6e0ea759e06381539edf6fc05b9f43714b9f429f5b4162412950ab0152b3486645525fe19d27217edecc3ac23def9e33d904'
+            '19720058cea769fa0db8e97914552d033f3b8a612caea5266fa96ad147fbfd77d83ad96b8c205380743141cab3019a5fd59aab25ae1123cef8ffd4a723ed1be7'
             'SKIP'
             'SKIP')
 
