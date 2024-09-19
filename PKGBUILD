@@ -8,7 +8,7 @@ pkgname=('nvidia-merged-utils' 'opencl-nvidia-merged' 'nvidia-merged-dkms')
 pkgver=550.90.07
 _hostver=550.90.05
 _gridver=550.90.07
-pkgrel=5
+pkgrel=6
 arch=('x86_64')
 url="http://www.nvidia.com/"
 license=('custom')
@@ -120,7 +120,7 @@ package_nvidia-merged-dkms() {
 
 package_nvidia-merged-utils() {
     pkgdesc="NVIDIA drivers utilities"
-    depends=('libglvnd' 'egl-wayland')
+    depends=('libglvnd' 'egl-wayland' 'egl-gbm')
     optdepends=('nvidia-settings: configuration tool'
                 'xorg-server: Xorg support'
                 'xorg-server-devel: nvidia-xconfig'
@@ -139,8 +139,6 @@ package_nvidia-merged-utils() {
     install -Dm755 nvidia_drv.so "${pkgdir}/usr/lib/xorg/modules/drivers/nvidia_drv.so"
 
     # Wayland/GBM
-    install -Dm755 libnvidia-egl-gbm.so.1* -t "${pkgdir}/usr/lib/"
-    install -Dm644 15_nvidia_gbm.json "${pkgdir}/usr/share/egl/egl_external_platform.d/15_nvidia_gbm.json"
     mkdir -p "${pkgdir}/usr/lib/gbm"
     ln -sr "${pkgdir}/usr/lib/libnvidia-allocator.so.${pkgver}" "${pkgdir}/usr/lib/gbm/nvidia-drm_gbm.so"
 

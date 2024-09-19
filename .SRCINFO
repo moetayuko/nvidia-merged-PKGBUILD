@@ -1,6 +1,6 @@
 pkgbase = nvidia-merged-utils
 	pkgver = 550.90.07
-	pkgrel = 5
+	pkgrel = 6
 	url = http://www.nvidia.com/
 	arch = x86_64
 	license = custom
@@ -33,6 +33,7 @@ pkgname = nvidia-merged-utils
 	install = nvidia-merged-utils.install
 	depends = libglvnd
 	depends = egl-wayland
+	depends = egl-gbm
 	optdepends = nvidia-settings: configuration tool
 	optdepends = xorg-server: Xorg support
 	optdepends = xorg-server-devel: nvidia-xconfig
