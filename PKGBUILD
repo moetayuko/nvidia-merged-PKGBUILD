@@ -25,6 +25,7 @@ source=('nvidia-drm-outputclass.conf'
         'systemd-homed-override.conf'
         'systemd-suspend-override.conf'
         "https://us.download.nvidia.com/XFree86/Linux-x86_64/${pkgver}/${_pkg}.run"
+        "make-modeset-fbdev-default.patch"
         "6.11-fbdev.patch"
         'nvidia-grid.conf'
         "https://foxi.buduanwang.vip/pan/vGPU/${_gridversion}/${_driverpack}.zip"
@@ -36,6 +37,7 @@ sha512sums=('de7116c09f282a27920a1382df84aa86f559e537664bb30689605177ce37dc50677
             'a0183adce78e40853edf7e6b73867e7a8ea5dabac8e8164e42781f64d5232fbe869f850ab0697c3718ebced5cde760d0e807c05da50a982071dfe1157c31d6b8'
             '55def6319f6abb1a4ccd28a89cd60f1933d155c10ba775b8dfa60a2dc5696b4b472c14b252dc0891f956e70264be87c3d5d4271e929a4fc4b1a68a6902814cee'
             'b8c2cdc918ec74b44517fc181f9eb08ea44d0d9a53f221c0aa243e34872203721a9a7fb27628d35e3028a6aa68917abd2962cc13d5d4b09e92866e14678567a4'
+            '73a3734aa0dd4df3cfba9dd7153f9b82981c4a4e86df0c804fb966280c02af8c39ad649bfa3d4119b82709974a40eaab67d357c586b2414c66113929a47628e9'
             'd37aa56ed937c596340106138a80c38ef5cc703cdc270dea6189fda20bcf369b11badd662bd0c0799ec1282428ca64d3dc137289fa1951905a10fd4cba6dd9b0'
             '5e1a6b9243d825e6e6fbe152f557a398b17f7b774e485599b0de1570d26147df9cf8226898aa0341e5b23d7fdbc9bae495ddfe775ce56e87966438b6ae069351'
             '19720058cea769fa0db8e97914552d033f3b8a612caea5266fa96ad147fbfd77d83ad96b8c205380743141cab3019a5fd59aab25ae1123cef8ffd4a723ed1be7'
@@ -65,6 +67,12 @@ prepare() {
     ./patch.sh --remap-p2v general-merge
     cd "${_mergeddriver}"
     bsdtar -xf nvidia-persistenced-init.tar.bz2
+
+    # Enable modeset and fbdev as default
+    # This avoids various issue, when Simplefb is used
+    # https://gitlab.archlinux.org/archlinux/packaging/packages/nvidia-utils/-/issues/14
+    # https://github.com/rpmfusion/nvidia-kmod/blob/master/make_modeset_default.patch
+    patch -Np1 < "$srcdir"/make-modeset-fbdev-default.patch
 
     # Add fix for fbdev "phantom" monitor with 6.11
     # https://gitlab.archlinux.org/archlinux/packaging/packages/linux/-/issues/80
