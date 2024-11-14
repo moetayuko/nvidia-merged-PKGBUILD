@@ -28,6 +28,7 @@ source=('nvidia-drm-outputclass.conf'
         "make-modeset-fbdev-default.patch"
         "6.11-fbdev.patch"
         'kernel-6.12.patch'
+        "nvidia-drm-Set-FOP_UNSIGNED_OFFSET-for-nv_drm_fops.f.patch"
         'nvidia-grid.conf'
         "https://foxi.buduanwang.vip/pan/vGPU/${_gridversion}/${_driverpack}.zip"
         "git+https://github.com/VGPU-Community-Drivers/vGPU-Unlock-patcher.git#branch=${pkgver%.*}"
@@ -41,6 +42,7 @@ sha512sums=('de7116c09f282a27920a1382df84aa86f559e537664bb30689605177ce37dc50677
             '73a3734aa0dd4df3cfba9dd7153f9b82981c4a4e86df0c804fb966280c02af8c39ad649bfa3d4119b82709974a40eaab67d357c586b2414c66113929a47628e9'
             '7dc54cf55b7c2014d0ddb443e42ef11e8a50fad9c42a7c0b71c60037e7a9009608095aff6fab5e9617369b5ac27163220c537b68c0583d58cd58931a34da3fa8'
             '9be4f085277f551a4619309644a5ab50d9c302b565c7071e6d91475b4fdb13c90470af67f80a3fde840e4ebb9dfbca10f97e723731b8dcbdad08119ae61d152a'
+            '65ee42612a775699a6a4d842e7a42de0adff360c64ab3917aaf3ade1c9034851d2a245e0659e5016fb7c87fc4b97aa777a17c3dd7dc9a8856055bf7c0d641e15'
             '5e1a6b9243d825e6e6fbe152f557a398b17f7b774e485599b0de1570d26147df9cf8226898aa0341e5b23d7fdbc9bae495ddfe775ce56e87966438b6ae069351'
             '19720058cea769fa0db8e97914552d033f3b8a612caea5266fa96ad147fbfd77d83ad96b8c205380743141cab3019a5fd59aab25ae1123cef8ffd4a723ed1be7'
             'SKIP'
@@ -81,6 +83,10 @@ prepare() {
     patch -Np1 < "$srcdir"/6.11-fbdev.patch
 
     patch -Np1 < "$srcdir"/kernel-6.12.patch -d kernel
+
+    # Patch by NVIDIA to fix the 6.12 Kernel opening the display
+    # https://github.com/NVIDIA/open-gpu-kernel-modules/issues/712
+    patch -Np1 < "$srcdir"/nvidia-drm-Set-FOP_UNSIGNED_OFFSET-for-nv_drm_fops.f.patch -d kernel
 
     cd kernel
 
