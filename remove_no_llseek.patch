@@ -1,0 +1,21 @@
+--- a/kernel/nvidia-vgpu-vfio/nvidia-vgpu-vfio.c
++++ b/kernel/nvidia-vgpu-vfio/nvidia-vgpu-vfio.c
+@@ -4722,14 +4722,18 @@
+        .unlocked_ioctl = vgpu_precopy_ioctl,
+ #endif
+        .release = vgpu_release_file_cb,
++#if LINUX_VERSION_CODE < KERNEL_VERSION(6, 12, 0)
+        .llseek = no_llseek,
++#endif
+ };
+ 
+ static const struct file_operations vgpu_resume_fops = {
+        .owner = THIS_MODULE,
+        .write = vgpu_resume_write,
+        .release = vgpu_release_file_cb,
++#if LINUX_VERSION_CODE < KERNEL_VERSION(6, 12, 0)
+        .llseek = no_llseek,
++#endif
+ };
+ 
+ static NV_STATUS
