@@ -1,0 +1,15 @@
+--- a/kernel/nvidia-vgpu-vfio/nvidia-vgpu-vfio.c
++++ b/kernel/nvidia-vgpu-vfio/nvidia-vgpu-vfio.c
+@@ -5826,8 +5826,12 @@
+ MODULE_VERSION(NV_VERSION_STRING);
+ 
+ #if defined(MODULE_IMPORT_NS)
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 13, 0)
++MODULE_IMPORT_NS("IOMMUFD");
++#else
+ MODULE_IMPORT_NS(IOMMUFD);
+ #endif
++#endif
+ 
+ #if defined(NV_VGPU_KVM_BUILD)
+ MODULE_SOFTDEP("pre: nvidia");

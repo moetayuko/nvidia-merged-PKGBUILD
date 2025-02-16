@@ -1,6 +1,6 @@
 pkgbase = nvidia-merged-utils
 	pkgver = 550.90.07
-	pkgrel = 7
+	pkgrel = 8
 	url = http://www.nvidia.com/
 	arch = x86_64
 	license = custom
@@ -18,6 +18,8 @@ pkgbase = nvidia-merged-utils
 	source = kernel-6.12.patch
 	source = nvidia-drm-Set-FOP_UNSIGNED_OFFSET-for-nv_drm_fops.f.patch
 	source = remove_no_llseek.patch
+	source = kernel-6.13-vfio.patch
+	source = nvidia-470xx-fix-linux-6.13.patch
 	source = nvidia-grid.conf
 	source = https://foxi.buduanwang.vip/pan/vGPU/17.3/NVIDIA-GRID-Linux-KVM-550.90.05-550.90.07-552.74.zip
 	source = git+https://github.com/VGPU-Community-Drivers/vGPU-Unlock-patcher.git#branch=550.90
@@ -33,6 +35,8 @@ pkgbase = nvidia-merged-utils
 	sha512sums = 9be4f085277f551a4619309644a5ab50d9c302b565c7071e6d91475b4fdb13c90470af67f80a3fde840e4ebb9dfbca10f97e723731b8dcbdad08119ae61d152a
 	sha512sums = 65ee42612a775699a6a4d842e7a42de0adff360c64ab3917aaf3ade1c9034851d2a245e0659e5016fb7c87fc4b97aa777a17c3dd7dc9a8856055bf7c0d641e15
 	sha512sums = 523705553b96b1e7ce4ebce8a00c1ebf174cf461f35ba2bd91a66eb3ab11d1d41457c2164ad98a08ef980baa34c3a8c9bc76ffe6020322ca700e074bcc822afb
+	sha512sums = a06d880990df6f74ed47190fe08e4310e6acd50247856318e4ecdad9cfa0f3fc73ffad523fdd314c43438cf93690d1d796a0c4c857f0d782224b6a9dd054ee87
+	sha512sums = c577d422799580e6a7b12670439dd7d68f9474ae17e96355144b7037d9a36228f22e53682f317ec7ca0f6a83d2520ede376350d02a2c072d0d195768f4115cba
 	sha512sums = 5e1a6b9243d825e6e6fbe152f557a398b17f7b774e485599b0de1570d26147df9cf8226898aa0341e5b23d7fdbc9bae495ddfe775ce56e87966438b6ae069351
 	sha512sums = 19720058cea769fa0db8e97914552d033f3b8a612caea5266fa96ad147fbfd77d83ad96b8c205380743141cab3019a5fd59aab25ae1123cef8ffd4a723ed1be7
 	sha512sums = SKIP
